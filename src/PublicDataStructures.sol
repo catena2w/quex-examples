@@ -21,14 +21,14 @@ struct OrderBook {
 
 contract PublicDataStructures is Ownable {
     constructor() Ownable(msg.sender) {}
-    
+
     uint256 requestId;
     OrderBook[] orderBooks;
 
     // We will track the requests performed by the unique request Id assigned by Quex
     // Only keep the latest request Id
-    function request(uint256 flowId) public payable onlyOwner returns(uint256) {
-        requestId = quexCore.createRequest{value:msg.value}(flowId);
+    function request(uint256 flowId) public payable onlyOwner returns (uint256) {
+        requestId = quexCore.createRequest{value: msg.value}(flowId);
         return requestId;
     }
 
