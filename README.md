@@ -13,14 +13,14 @@ Install Quex intergaces:
 forge install quex-tech/quex-v1-interfaces
 ```
 
-Start local chain:
+Put private key to environment variables;
 ```shell
-anvil
+export SECRET=0xYourPrivateKey
 ```
 
-Deploy to local:
+Deploy to arbitrum sepolia:
 ```shell
-forge script script/DeployPublicData.s.sol:DeployPublicData --rpc-url http://localhost:8545 --private-key 0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80 --broadcast
+forge script script/DeployPublicData.s.sol:DeployPublicData --broadcast
 ```
 
 Expect response like:
@@ -34,7 +34,11 @@ Paid: 0.0008893517 ETH (8893517 gas * 0.1 gwei)
 
 ✅ Sequence #1 on arbitrum-sepolia | Total Paid: 0.0008893517 ETH (8893517 gas * avg 0.1 gwei)
 ```
-Copy the "Contract Address" value, we'll need it later.
+
+Rememeber the "Contract Address" value, we'll need it later. Let's put it into environment:
+```shell
+export CONTRACT_ADDRESS=0x393e4610CD8449f023C2eEef3004BEAC9bCE7C97
+```
 
 
 ## Create flow
@@ -47,10 +51,10 @@ source ./venv/bin/activate
 pip install -r requirements.txt
 ```
 
-Store secret key in `.env` file:
-```shell
-$ cat .env
-SECRET_KEY=5a44...
+
+!!! Internal note: create flow fails on this line if secret is in environment variables
+```python
+account: LocalAccount = Account.from_key(config["chain"]["secret_key"])
 ```
 
 Get your method identifier. Run
@@ -76,4 +80,16 @@ Native fee:   30000000000000
 Gas to cover: 810000
 ```
 
+We need to remember the `flow_id` value from here. Let's put it to environment variables:
+
+```shell
+export FLOW_ID=0x0000000000000000000000000000000000000000000000000000000000000014
+```
+
+
+Request data:
+
+
+
+action_id
 
