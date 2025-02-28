@@ -4,3 +4,6 @@
 [submodule "lib/openzeppelin-contracts"]
 	path = lib/openzeppelin-contracts
 	url = https://github.com/OpenZeppelin/openzeppelin-contracts
+[submodule "lib/quex-v1-interfaces"]
+	path = lib/quex-v1-interfaces
+	url = https://github.com/quex-tech/quex-v1-interfaces
