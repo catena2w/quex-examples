@@ -23,74 +23,57 @@ Deploy to local:
 forge script script/DeployPublicData.s.sol:DeployPublicData --rpc-url http://localhost:8545 --private-key 0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80 --broadcast
 ```
 
-
-=========================
-| OLD SEction to delete |
-=========================
-
-## Foundry
-
-**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
-
-Foundry consists of:
-
--   **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
--   **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
--   **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
--   **Chisel**: Fast, utilitarian, and verbose solidity REPL.
-
-## Documentation
-
-https://book.getfoundry.sh/
-
-## Usage
-
-### Build
+Expect response like:
 
 ```shell
-$ forge build
-```
+##### arbitrum-sepolia
+✅  [Success] Hash: 0x563fed215695ab5be8395a30e91bbc19443cc76c081c4ca92c2ddcae11aae783
+Contract Address: 0x393e4610CD8449f023C2eEef3004BEAC9bCE7C97
+Block: 128167129
+Paid: 0.0008893517 ETH (8893517 gas * 0.1 gwei)
 
-### Test
+✅ Sequence #1 on arbitrum-sepolia | Total Paid: 0.0008893517 ETH (8893517 gas * avg 0.1 gwei)
+```
+Copy the "Contract Address" value, we'll need it later.
+
+
+## Create flow
+
+Go to `lib/quex-v1-interfaces/tools/create_flow`
 
 ```shell
-$ forge test
+python -m venv venv 
+source ./venv/bin/activate
+pip install -r requirements.txt
 ```
 
-### Format
-
+Store secret key in `.env` file:
 ```shell
-$ forge fmt
+$ cat .env
+SECRET_KEY=5a44...
 ```
 
-### Gas Snapshots
-
+Get your method identifier. Run
 ```shell
-$ forge snapshot
+forge inspect PublicDataStructures methods
 ```
+and get identifier of `processResponse` method
 
-### Anvil
+Format config.json:
+1. Check that td_pubkey, oracle_pool.address, quex_core.address equal to ones, presented at [adresses page](https://docs.quex.tech/general-information/addresses)
+2. Set consumer to your contract address to the value, got from forge inspect command
 
+Run:
 ```shell
-$ anvil
+python create_flow.py config.json
 ```
 
-### Deploy
-
+Expect response like:
 ```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
+action_id:    0x185a86d59dee1308fffd3e813c3fa2a91cc5c9daa35959105f59cdb797e058f3
+flow_id:      0x0000000000000000000000000000000000000000000000000000000000000014
+Native fee:   30000000000000
+Gas to cover: 810000
 ```
 
-### Cast
 
-```shell
-$ cast <subcommand>
-```
-
-### Help
-
-```shell
-$ forge --help
-$ anvil --help
-$ cast --help
-```

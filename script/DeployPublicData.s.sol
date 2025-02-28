@@ -6,7 +6,7 @@ import {PublicDataStructures} from "../src/PublicDataStructures.sol";
 
 contract DeployPublicData is Script {
     function run() external {
-        vm.createSelectFork("local");
+        vm.createSelectFork("arbitrum-sepolia");
         vm.startBroadcast();
         new PublicDataStructures();
         vm.stopBroadcast();
