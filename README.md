@@ -13,6 +13,16 @@ Install Quex intergaces:
 forge install quex-tech/quex-v1-interfaces
 ```
 
+Start local chain:
+```shell
+anvil
+```
+
+Deploy to local:
+```shell
+forge script script/DeployPublicData.s.sol:DeployPublicData --rpc-url http://localhost:8545 --private-key 0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80 --broadcast
+```
+
 
 =========================
 | OLD SEction to delete |
