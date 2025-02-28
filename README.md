@@ -1,12 +1,17 @@
 
-## Prerequisities
+## Install libraries
 
-Install [openzeppelin](https://docs.openzeppelin.com/contracts/5.x/) contracts, e.g.
+Install [openzeppelin](https://docs.openzeppelin.com/contracts/5.x/) contracts:
 
 ```shell
-npm install @openzeppelin/contracts
+forge install @openzeppelin/contracts
 ```
 
+Install Quex intergaces:
+
+```shell
+forge install quex-tech/quex-v1-interfaces
+```
 
 
 =========================
