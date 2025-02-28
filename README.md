@@ -1,5 +1,4 @@
-
-## Install libraries
+## Prepare environment
 
 Install [openzeppelin](https://docs.openzeppelin.com/contracts/5.x/) contracts:
 
@@ -7,16 +6,18 @@ Install [openzeppelin](https://docs.openzeppelin.com/contracts/5.x/) contracts:
 forge install @openzeppelin/contracts
 ```
 
-Install Quex intergaces:
+Install Quex interfaces:
 
 ```shell
 forge install quex-tech/quex-v1-interfaces
 ```
 
-Put private key to environment variables;
+Put your private key to environment variables;
 ```shell
 export SECRET=0xYourPrivateKey
 ```
+
+## Deploy
 
 Deploy to arbitrum sepolia:
 ```shell
@@ -40,17 +41,15 @@ Rememeber the "Contract Address" value, we'll need it later. Let's put it into e
 export CONTRACT_ADDRESS=0x393e4610CD8449f023C2eEef3004BEAC9bCE7C97
 ```
 
-
 ## Create flow
 
-Go to `lib/quex-v1-interfaces/tools/create_flow`
+Go to `lib/quex-v1-interfaces/tools/create_flow` and prepare create flow environment:
 
 ```shell
 python -m venv venv 
 source ./venv/bin/activate
 pip install -r requirements.txt
 ```
-
 
 !!! Internal note: create flow fails on this line if secret is in environment variables
 ```python
@@ -61,13 +60,13 @@ Get your method identifier. Run
 ```shell
 forge inspect PublicDataStructures methods
 ```
-and get identifier of `processResponse` method
+and rember identifier of `processResponse` method
 
 Format config.json:
-1. Check that td_pubkey, oracle_pool.address, quex_core.address equal to ones, presented at [adresses page](https://docs.quex.tech/general-information/addresses)
-2. Set consumer to your contract address to the value, got from forge inspect command
+1. Check that td_pubkey, oracle_pool.address, quex_core.address equal to ones, presented at [addresses page](https://docs.quex.tech/general-information/addresses)
+2. Set value of `consumer` variable to identifier, got from `forge inspect` command
 
-Run:
+Then create a flow:
 ```shell
 python create_flow.py config.json
 ```
@@ -87,9 +86,9 @@ export FLOW_ID=0x000000000000000000000000000000000000000000000000000000000000001
 ```
 
 
-Request data:
+## Request data:
 
-
-
-action_id
+```shell
+forge script script/Request.s.sol --broadcast
+```
 
