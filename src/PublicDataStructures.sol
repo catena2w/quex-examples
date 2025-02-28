@@ -20,6 +20,8 @@ struct OrderBook {
 }
 
 contract PublicDataStructures is Ownable {
+    constructor() Ownable(msg.sender) {}
+    
     uint256 requestId;
     OrderBook[] orderBooks;
 
