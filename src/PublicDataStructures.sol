@@ -2,7 +2,7 @@
 pragma solidity 0.8.22;
 
 // Import IQuexActionRegistry interface and DataItem structure
-import "https://github.com/quex-tech/quex-v1-interfaces/blob/fad2ceb5bff350b1eece52bdb74a2e01984f333e/interfaces/core/IQuexActionRegistry.sol";
+import "quex-v1-interfaces/interfaces/core/IQuexActionRegistry.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
 address constant QUEX_CORE = 0xD8a37e96117816D43949e72B90F73061A868b387;
