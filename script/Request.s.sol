@@ -14,7 +14,7 @@ contract RequestScript is Script {
         PublicDataStructures target = PublicDataStructures(payable(contractAddress));
 
         vm.startBroadcast(privateKey);
-        target.request{value: 40000000000000}(inputValue);
+        target.request{value: 4000000000000000}(inputValue);
         vm.stopBroadcast();
     }
 }

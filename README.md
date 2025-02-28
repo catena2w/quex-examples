@@ -88,7 +88,13 @@ export FLOW_ID=0x000000000000000000000000000000000000000000000000000000000000001
 
 ## Request data:
 
+Make a request to Quex oracle pool, by the following command:
 ```shell
 forge script script/Request.s.sol --broadcast
+```
+
+The response will likely be delivered within the next block, so you can already check the last bid:
+```shell
+forge script script/GetLastBid.s.sol
 ```
 
